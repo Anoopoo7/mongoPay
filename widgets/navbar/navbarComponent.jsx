@@ -1,0 +1,63 @@
+const NavbarComponent = ({
+  navToggler,
+  handleNavToggler,
+  userLogged,
+  logout,
+}) => {
+  return (
+    <div className="container">
+      <nav className="navbar navbar-expand-lg navbar-light">
+        <a className="navbar-brand" href="#">
+          <b>mongoPay</b>
+        </a>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarText"
+          aria-controls="navbarText"
+          aria-expanded="true"
+          aria-label="Toggle navigation"
+        >
+          <span
+            className="navbar-toggler-icon"
+            onClick={handleNavToggler}
+          ></span>
+        </button>
+        <div
+          className={`collapse navbar-collapse ${navToggler}`}
+          id="navbarText"
+        >
+          <ul className="navbar-nav m-auto">
+            <li className="nav-item active">
+              <a className="nav-link" href="/offers">
+                Offers
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/profile">
+                Profiles
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/transaction">
+                Transactions
+              </a>
+            </li>
+          </ul>
+          {userLogged?.loggedIn ? (
+            <button className="btn btn-outline-danger my-2 my-sm-0 pl-4 pr-4" onClick={logout}>
+              Log out
+            </button>
+          ) : (
+            <button className="btn btn-outline-success my-2 my-sm-0 pl-4 pr-4">
+              Log In
+            </button>
+          )}
+        </div>
+      </nav>
+    </div>
+  );
+};
+
+export default NavbarComponent;
