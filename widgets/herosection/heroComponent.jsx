@@ -1,14 +1,19 @@
-import Image from "next/image";
+// import Image from "next/image";
 
 const HeroComponent = ({ heropageContents }) => {
   return (
     <>
       <div className="container d-flex justify-content-center pt-5">
-        <Image
+        {/* <Image
           src="/hero.gif"
           alt="Picture of the author"
           width={500}
           height={500}
+        /> */}
+        <img
+          src="/hero.gif"
+          alt="Picture of the author"
+          className="img-fluid"
         />
       </div>
       <div className="container d-flex justify-content-center">

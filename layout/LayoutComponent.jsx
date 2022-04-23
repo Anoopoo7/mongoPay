@@ -5,9 +5,11 @@ const LayoutComponent = ({ children }) => {
   const { user } = children.props;
   return (
     <>
-      <NavbarContainer user={user} />
-      {children}
-      <FooterContainer />
+      <div className="overflow-hidden">
+        <NavbarContainer user={user} />
+        {children}
+        <FooterContainer />
+      </div>
     </>
   );
 };

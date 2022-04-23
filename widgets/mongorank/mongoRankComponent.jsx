@@ -1,6 +1,6 @@
 const MongoRankComponent = ({ rankList }) => {
   return (
-    <div className="container pb-5">
+    <div className="container pb-5 pt-5">
       <h1 className="text-center">
         <b> Mongo RankUps</b>{" "}
       </h1>
