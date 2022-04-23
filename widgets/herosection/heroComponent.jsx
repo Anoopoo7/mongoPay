@@ -17,9 +17,7 @@ const HeroComponent = ({ heropageContents }) => {
         />
       </div>
       <div className="container d-flex justify-content-center">
-        <h1 className="text-center">
-          <b>{heropageContents?.text}</b>
-        </h1>
+        <h1 className="text-center text-heading">{heropageContents?.text}</h1>
       </div>
       <div className="container d-flex justify-content-center p-4">
         <button type="button" className="btn btn-success p-2 pl-5 pr-5">

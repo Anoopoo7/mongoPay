@@ -1,13 +1,9 @@
-const NavbarComponent = ({
-  navToggler,
-  handleNavToggler,
-  userLogged,
-}) => {
+const NavbarComponent = ({ navToggler, handleNavToggler, userLogged }) => {
   return (
     <div className="container">
       <nav className="navbar navbar-expand-lg navbar-light">
-        <a className="navbar-brand" href="#">
-          <b>mongoPay</b>
+        <a className="navbar-brand text-heading" href="#">
+          mongoPay
         </a>
         <button
           className="navbar-toggler"
