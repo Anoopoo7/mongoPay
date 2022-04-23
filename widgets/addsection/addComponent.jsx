@@ -4,7 +4,7 @@ const AddComponent = ({ heritage }) => {
       <div className="container pt-5 pb-5">
         <div className="row">
           <div className="col-12 col-md-6 d-flex justify-content-center align-items-center flex-column text-justify">
-            <h1 className="text-heading">
+            <h1 className="text-heading text-center">
                {heritage.tittle}
             </h1>
             <hr />

@@ -3,7 +3,7 @@
 const HeroComponent = ({ heropageContents }) => {
   return (
     <>
-      <div className="container d-flex justify-content-center pt-5">
+      <div className="container d-flex justify-content-center pt-5 pb-5">
         {/* <Image
           src="/hero.gif"
           alt="Picture of the author"
