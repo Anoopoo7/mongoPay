@@ -2,7 +2,6 @@ const NavbarComponent = ({
   navToggler,
   handleNavToggler,
   userLogged,
-  logout,
 }) => {
   return (
     <div className="container">
@@ -28,7 +27,11 @@ const NavbarComponent = ({
           className={`collapse navbar-collapse ${navToggler}`}
           id="navbarText"
         >
-          <ul className="navbar-nav m-auto">
+          <ul
+            className={`navbar-nav ${
+              userLogged?.loggedIn ? "ml-auto" : "m-auto"
+            }`}
+          >
             <li className="nav-item active">
               <a className="nav-link" href="/offers">
                 Offers
@@ -46,9 +49,7 @@ const NavbarComponent = ({
             </li>
           </ul>
           {userLogged?.loggedIn ? (
-            <button className="btn btn-outline-danger my-2 my-sm-0 pl-4 pr-4" onClick={logout}>
-              Log out
-            </button>
+            ""
           ) : (
             <button className="btn btn-outline-success my-2 my-sm-0 pl-4 pr-4">
               Log In

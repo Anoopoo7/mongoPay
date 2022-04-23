@@ -3,9 +3,9 @@ import Image from "next/image";
 const OfferCardComponent = ({ offerCardList }) => {
   return (
     <div className="container d-flex justify-content-center flex-wrap">
-      {offerCardList
-        ? offerCardList.map((card) => (
-            <div className="card m-2" style={{ width: "18rem" }}>
+      {offerCardList && Array.isArray(offerCardList)
+        ? offerCardList.map((card,index) => (
+            <div key={index} className="card m-2" style={{ width: "18rem" }}>
               <div className="container d-flex justify-content-center">
                 <Image
                   src="/creditcard.png"

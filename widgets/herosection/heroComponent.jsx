@@ -1,12 +1,11 @@
 import Image from "next/image";
 
 const HeroComponent = ({ heropageContents }) => {
-  console.log(heropageContents);
   return (
     <>
       <div className="container d-flex justify-content-center pt-5">
         <Image
-          src="/creditcard.png"
+          src="/hero.gif"
           alt="Picture of the author"
           width={500}
           height={500}
