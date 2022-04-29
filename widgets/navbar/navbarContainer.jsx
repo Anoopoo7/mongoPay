@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import NavbarComponent from "./navbarComponent";
 
-const NavbarContainer = ({ user }) => {
+const NavbarContainer = ({ user, urlpath }) => {
   const [navToggler, setNavToggler] = useState("");
 
   const handleNavToggler = () => {
@@ -17,6 +17,7 @@ const NavbarContainer = ({ user }) => {
         navToggler={navToggler}
         handleNavToggler={handleNavToggler}
         userLogged={user}
+        urlpath={urlpath}
       />
     </>
   );

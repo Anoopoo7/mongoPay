@@ -2,13 +2,12 @@ import AddContainer from "../widgets/addsection/addcontainer";
 import HeroContainer from "../widgets/herosection/heroContainer";
 import MongoRankContainer from "../widgets/mongorank/mongoRankContainer";
 import OfferCardContainer from "../widgets/offerCards/offerCardContainer";
-
+import { getCookies, setCookies, getCookie } from "cookies-next";
 import contents from "../services/contentService";
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps({ req, res }) {
   const data = await contents.getHomepageContents();
   const homecontents = data.data;
-
   const testUser = {
     loggedIn: true,
     name: "anoop",
@@ -19,6 +18,8 @@ export async function getServerSideProps(context) {
     transctionId: "TRANS001MONGOYLSQR0932",
     loans: null,
   };
+  setCookies("user", JSON.stringify(testUser), { req, res, maxAge: 60 * 6 * 24 });
+
   const herosection = {
     img: homecontents.headerImg,
     text: homecontents.headingTitle,
@@ -77,8 +78,8 @@ export default function Home({
       <div className="container">
         <HeroContainer herosection={herosection || {}} />{" "}
         <OfferCardContainer offersection={offersection || []} />{" "}
-        <AddContainer heritage={heritage || []} />
-        <MongoRankContainer rankup={rankup || []} />
+        <AddContainer heritage={heritage || []} />{" "}
+        <MongoRankContainer rankup={rankup || []} />{" "}
       </div>{" "}
     </div>
   );

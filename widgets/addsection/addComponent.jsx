@@ -1,5 +1,4 @@
 const AddComponent = ({ heritage }) => {
-  console.log(heritage);
   return (
     <>
       <div className="container pt-5 pb-5">

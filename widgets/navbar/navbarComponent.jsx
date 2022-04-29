@@ -1,4 +1,9 @@
-const NavbarComponent = ({ navToggler, handleNavToggler, userLogged }) => {
+const NavbarComponent = ({
+  navToggler,
+  handleNavToggler,
+  userLogged,
+  urlpath,
+}) => {
   return (
     <div className="container">
       <nav className="navbar navbar-expand-lg navbar-light">
@@ -28,17 +33,17 @@ const NavbarComponent = ({ navToggler, handleNavToggler, userLogged }) => {
               userLogged?.loggedIn ? "ml-auto" : "m-auto"
             }`}
           >
-            <li className="nav-item active">
+            <li className={`nav-item ${urlpath === "/offers" ? "active" : ""}`}>
               <a className="nav-link" href="/offers">
                 Offers
               </a>
             </li>
-            <li className="nav-item">
+            <li className={`nav-item ${urlpath === "/profile" ? "active" : ""}`}>
               <a className="nav-link" href="/profile">
                 Profiles
               </a>
             </li>
-            <li className="nav-item">
+            <li className={`nav-item ${urlpath === "/transaction" ? "active" : ""}`}>
               <a className="nav-link" href="/transaction">
                 Transactions
               </a>
