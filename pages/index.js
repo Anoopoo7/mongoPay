@@ -1,11 +1,14 @@
-import Head from "next/head";
 import AddContainer from "../widgets/addsection/addcontainer";
 import HeroContainer from "../widgets/herosection/heroContainer";
 import MongoRankContainer from "../widgets/mongorank/mongoRankContainer";
-import NavbarContainer from "../widgets/navbar/navbarContainer";
 import OfferCardContainer from "../widgets/offerCards/offerCardContainer";
 
+import contents from "../services/contentService";
+
 export async function getServerSideProps(context) {
+  const data = await contents.getHomepageContents();
+  const homecontents = data.data;
+
   const testUser = {
     loggedIn: true,
     name: "anoop",
@@ -17,44 +20,14 @@ export async function getServerSideProps(context) {
     loans: null,
   };
   const herosection = {
-    img: "image_creditcard",
-    text: "Future Money Is HERE",
+    img: homecontents.headerImg,
+    text: homecontents.headingTitle,
+    navigation: homecontents.isheadingEnabled,
+    buttonText: homecontents.headingButtonText,
+    buttonLink: homecontents.headingButtonLOffercardink,
   };
-  const offersection = [
-    {
-      img: "image",
-      title: "card tittle",
-      cardText:
-        "Some quick example text to build on the card title and make up the bulk of the card's content.",
-      isNavigatable: true,
-      navLink: "#",
-      buttonText: "explore",
-    },
-    {
-      img: "image",
-      title: "card tittle",
-      cardText:
-        "Some quick example text to build on the card title and make up the bulk of the card's content.",
-      isNavigatable: true,
-      navLink: "#",
-      buttonText: "explore",
-    },
-    {
-      img: "image",
-      title: "card tittle",
-      cardText:
-        "Some quick example text to build on the card title and make up the bulk of the card's content.",
-      isNavigatable: true,
-      navLink: "#",
-      buttonText: "explore",
-    },
-  ];
-  const heritage = {
-    tittle: "Heritage Money",
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem ullam nulla totam provident aut aperiam, omnis rerum vel tempora inventore reiciendis praesentium rem quis eligendi accusantium vitae ducimus. Dolor, aspernatur assumenda praesentium",
-    image: "image.jsp",
-  };
+  const offersection = homecontents.offerCards;
+  const heritage = homecontents.advertisements;
   const rankup = [
     {
       name: "anoop",
@@ -92,14 +65,20 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default function Home({ user, herosection, offersection, heritage, rankup }) {
+export default function Home({
+  user,
+  herosection,
+  offersection,
+  heritage,
+  rankup,
+}) {
   return (
     <div className="row">
       <div className="container">
-        <HeroContainer herosection={herosection} />{" "}
-        <OfferCardContainer offersection={offersection} />{" "}
-        <AddContainer heritage={heritage} />
-        <MongoRankContainer rankup={rankup} />
+        <HeroContainer herosection={herosection || {}} />{" "}
+        <OfferCardContainer offersection={offersection || []} />{" "}
+        <AddContainer heritage={heritage || []} />
+        <MongoRankContainer rankup={rankup || []} />
       </div>{" "}
     </div>
   );

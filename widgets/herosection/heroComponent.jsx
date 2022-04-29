@@ -20,9 +20,14 @@ const HeroComponent = ({ heropageContents }) => {
         <h1 className="text-center text-heading">{heropageContents?.text}</h1>
       </div>
       <div className="container d-flex justify-content-center p-4">
-        <button type="button" className="btn btn-success p-2 pl-5 pr-5">
-          Get Starts
-        </button>
+        {heropageContents.navigation && (
+          <a
+            href={heropageContents.buttonLink}
+            className="btn btn-success p-2 pl-5 pr-5"
+          >
+            {heropageContents.buttonText}
+          </a>
+        )}
       </div>
     </>
   );
