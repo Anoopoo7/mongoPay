@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const NavbarComponent = ({
   navToggler,
   handleNavToggler,
@@ -7,9 +9,14 @@ const NavbarComponent = ({
   return (
     <div className="container">
       <nav className="navbar navbar-expand-lg navbar-light">
-        <a className="navbar-brand text-heading" href="/">
-          mongoPay
-        </a>
+        <Link
+          className="navbar-brand link m-2"
+          href={{
+            pathname: "/",
+          }}
+        >
+          <span className="text-heading">mongoPay</span>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -34,32 +41,53 @@ const NavbarComponent = ({
             }`}
           >
             <li className={`nav-item ${urlpath === "/offers" ? "active" : ""}`}>
-              <a className="nav-link" href="/offers">
-                Offers
-              </a>
+              <span className="m-3">
+                <Link className="nav-link" href="/offers">
+                  Offers
+                </Link>
+              </span>
             </li>
             <li
               className={`nav-item ${urlpath === "/profile" ? "active" : ""}`}
             >
-              <a className="nav-link" href="/profile">
-                Profiles
-              </a>
+              <span className="m-3">
+                <Link
+                  className="nav-link"
+                  href={{
+                    pathname: "/profile",
+                  }}
+                >
+                  Profiles
+                </Link>
+              </span>
             </li>
             <li
               className={`nav-item ${
                 urlpath === "/transaction" ? "active" : ""
               }`}
             >
-              <a className="nav-link" href="/transaction">
+              <Link
+                className="nav-link"
+                href={{
+                  pathname: "/transaction",
+                }}
+              >
                 Transactions
-              </a>
+              </Link>
             </li>
           </ul>
-          {userLogged?.active ? (
+          {urlpath === "/auth" || userLogged?.active ? (
             ""
           ) : (
             <button className="btn btn-outline-success my-2 my-sm-0 pl-4 pr-4">
-              Log In
+              <Link
+                className="nav-link"
+                href={{
+                  pathname: "/auth",
+                }}
+              >
+                <span>Login</span>
+              </Link>
             </button>
           )}
         </div>

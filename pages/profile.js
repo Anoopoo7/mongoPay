@@ -1,6 +1,6 @@
 import ProfileCardContainer from "../widgets/profilecard/profilecardContainer";
 import userServices from "../services/userServices";
-import sessions from "../https/sessions.json";
+import Router from "next/router";
 
 export async function getServerSideProps({ req, res }) {
   return {
@@ -8,8 +8,24 @@ export async function getServerSideProps({ req, res }) {
   };
 }
 const Profile = (props) => {
+  if (!props?.userData?.active) {
+    Router.push(
+      {
+        pathname: "/auth",
+      },
+      undefined,
+      { shallow: true }
+    );
+  }
   const logout = () => {
     props.clearUserData();
+    Router.push(
+      {
+        pathname: "/auth",
+      },
+      undefined,
+      { shallow: true }
+    );
   };
   return <ProfileCardContainer logout={logout} />;
 };

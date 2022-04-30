@@ -1,7 +1,7 @@
-const Authentification = () => {
-    return ( 
-        <h1>Authentification</h1>
-     );
-}
- 
+import AuthContainer from "../widgets/auths/authcontainer";
+
+const Authentification = ({ setUserdata }) => {
+  return <AuthContainer setUserdata={setUserdata} />;
+};
+
 export default Authentification;
