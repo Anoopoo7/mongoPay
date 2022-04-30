@@ -2,7 +2,7 @@ import CreditCards from "./creditcards";
 import PersonalDetails from "./personalDetails";
 import TransactionDetails from "./transactionDetails";
 
-const ProfileCardComponent = ({ switchViews, handleSwitchViews }) => {
+const ProfileCardComponent = ({ switchViews, handleSwitchViews, logout }) => {
   return (
     <>
       <div className="container emp-profile">
@@ -46,12 +46,10 @@ const ProfileCardComponent = ({ switchViews, handleSwitchViews }) => {
               </div>
             </div>
             <div className="col-md-2 ml-auto">
-              <input
-                type="submit"
-                className="profile-edit-btn"
-                name="btnAddMore"
-                value="Edit Profile"
-              />
+              <button className="btn btn-warning m-1">Edit</button>
+              <button className="btn btn-danger m-1" onClick={logout}>
+                logout
+              </button>
             </div>
           </div>
           <div className="row">

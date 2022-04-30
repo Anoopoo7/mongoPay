@@ -1,22 +1,34 @@
 import HttpDetails from "../config";
 import axios from "axios";
 
-const getInstance = async(backendAPI, ENV, AppId, url, params) => {
+const getInstance = async(backendAPI, ENV, AppId, url) => {
     const apiUrl = backendAPI + url;
     let config = {
         headers: {
             ENV: ENV,
             appId: AppId,
         },
-        params: params,
     };
     return axios.get(apiUrl, config);
 };
+const postInstance = async(backendAPI, ENV, AppId, url, body) => {
+    const apiUrl = backendAPI + url;
+    let config = {
+        headers: {
+            ENV: ENV,
+            appId: AppId,
+        },
+    };
+    return axios.post(apiUrl, body, config);
+};
 
-const apicall = async(method, url, params) => {
+const apicall = async(method, url, body) => {
     const { backendAPI, ENV, AppId } = HttpDetails.getApis() || {};
     if (method === "get") {
-        const response = await getInstance(backendAPI, ENV, AppId, url, params);
+        const response = await getInstance(backendAPI, ENV, AppId, url) || {};
+        return response.data;
+    } else if (method === "post") {
+        const response = await postInstance(backendAPI, ENV, AppId, url, body) || {};
         return response.data;
     }
 };
@@ -36,9 +48,7 @@ axios.interceptors.response.use(
         return response;
     },
     function(error) {
-        console.log(response);
-        console.log(error);
-        return Promise.reject(error);
+        return null;
     }
 );
 

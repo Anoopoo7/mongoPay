@@ -2,24 +2,11 @@ import AddContainer from "../widgets/addsection/addcontainer";
 import HeroContainer from "../widgets/herosection/heroContainer";
 import MongoRankContainer from "../widgets/mongorank/mongoRankContainer";
 import OfferCardContainer from "../widgets/offerCards/offerCardContainer";
-import { getCookies, setCookies, getCookie } from "cookies-next";
 import contents from "../services/contentService";
 
 export async function getServerSideProps({ req, res }) {
   const data = await contents.getHomepageContents();
   const homecontents = data.data;
-  const testUser = {
-    loggedIn: true,
-    name: "anoop",
-    userId: "MONGOUSER001",
-    roles: "admin",
-    card: "Federal bank",
-    cardNumber: "6085 4093 8792 1209",
-    transctionId: "TRANS001MONGOYLSQR0932",
-    loans: null,
-  };
-  setCookies("user", JSON.stringify(testUser), { req, res, maxAge: 60 * 6 * 24 });
-
   const herosection = {
     img: homecontents.headerImg,
     text: homecontents.headingTitle,
@@ -62,12 +49,11 @@ export async function getServerSideProps({ req, res }) {
     },
   ];
   return {
-    props: { user: testUser, herosection, offersection, heritage, rankup },
+    props: {herosection, offersection, heritage, rankup },
   };
 }
 
 export default function Home({
-  user,
   herosection,
   offersection,
   heritage,

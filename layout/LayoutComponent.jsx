@@ -2,14 +2,14 @@ import { useRouter } from "next/router";
 import FooterContainer from "../widgets/footer/footerContainer";
 import NavbarContainer from "../widgets/navbar/navbarContainer";
 
-const LayoutComponent = ({ children }) => {
+const LayoutComponent = (props) => {
   const route = useRouter();
-  const { user } = children.props;
+  const user = props.userData || {};
   return (
     <>
       <div className="overflow-hidden">
         <NavbarContainer user={user} urlpath={route.pathname} />
-        {children}
+        {props.children}
         <FooterContainer />
       </div>
     </>

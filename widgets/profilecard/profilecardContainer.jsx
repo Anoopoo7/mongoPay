@@ -1,7 +1,9 @@
 import { useState } from "react";
 import ProfileCardComponent from "./profilecardComponent";
+import { useRouter } from "next/router";
 
-const ProfileCardContainer = () => {
+const ProfileCardContainer = ({ logout }) => {
+  const router = useRouter();
   const [switchViews, setSwitchViews] = useState({
     about: {
       active: "active",
@@ -47,6 +49,7 @@ const ProfileCardContainer = () => {
     <ProfileCardComponent
       switchViews={switchViews}
       handleSwitchViews={handleSwitchViews}
+      logout={logout}
     />
   );
 };

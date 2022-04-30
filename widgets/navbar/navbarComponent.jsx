@@ -7,7 +7,7 @@ const NavbarComponent = ({
   return (
     <div className="container">
       <nav className="navbar navbar-expand-lg navbar-light">
-        <a className="navbar-brand text-heading" href="#">
+        <a className="navbar-brand text-heading" href="/">
           mongoPay
         </a>
         <button
@@ -30,7 +30,7 @@ const NavbarComponent = ({
         >
           <ul
             className={`navbar-nav ${
-              userLogged?.loggedIn ? "ml-auto" : "m-auto"
+              userLogged?.active ? "ml-auto" : "m-auto"
             }`}
           >
             <li className={`nav-item ${urlpath === "/offers" ? "active" : ""}`}>
@@ -38,18 +38,24 @@ const NavbarComponent = ({
                 Offers
               </a>
             </li>
-            <li className={`nav-item ${urlpath === "/profile" ? "active" : ""}`}>
+            <li
+              className={`nav-item ${urlpath === "/profile" ? "active" : ""}`}
+            >
               <a className="nav-link" href="/profile">
                 Profiles
               </a>
             </li>
-            <li className={`nav-item ${urlpath === "/transaction" ? "active" : ""}`}>
+            <li
+              className={`nav-item ${
+                urlpath === "/transaction" ? "active" : ""
+              }`}
+            >
               <a className="nav-link" href="/transaction">
                 Transactions
               </a>
             </li>
           </ul>
-          {userLogged?.loggedIn ? (
+          {userLogged?.active ? (
             ""
           ) : (
             <button className="btn btn-outline-success my-2 my-sm-0 pl-4 pr-4">

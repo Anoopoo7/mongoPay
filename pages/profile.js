@@ -1,16 +1,17 @@
 import ProfileCardContainer from "../widgets/profilecard/profilecardContainer";
-import { getCookies, setCookies, getCookie } from "cookies-next";
+import userServices from "../services/userServices";
+import sessions from "../https/sessions.json";
 
 export async function getServerSideProps({ req, res }) {
-  // console.log(getCookie("test", { req, res }));
-  const cookies = getCookies({ req, res });
-  const testUser = JSON.parse(cookies.user);
   return {
-    props: { user: testUser },
+    props: {},
   };
 }
 const Profile = (props) => {
-  return <ProfileCardContainer />;
+  const logout = () => {
+    props.clearUserData();
+  };
+  return <ProfileCardContainer logout={logout} />;
 };
 
 export default Profile;
