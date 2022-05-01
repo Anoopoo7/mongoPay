@@ -7,7 +7,7 @@ const ProfileCardComponent = ({
   handleSwitchViews,
   logout,
   userData,
-  cardDetails
+  cardDetails,
 }) => {
   return (
     <>
@@ -60,11 +60,11 @@ const ProfileCardComponent = ({
             </div>
           </div>
           <div className="row">
-            <div className="col-md-4">
-              <CreditCards cardDetails={cardDetails}/>
+            <div className="col-md-4 d-none d-md-block">
+              <CreditCards cardDetails={cardDetails} />
             </div>
             <div className="col-md-8">
-              <div className="tab-content profile-tab" id="myTabContent">
+              <div className="tab-content profile-tab m-3" id="myTabContent">
                 <PersonalDetails
                   active={switchViews?.about?.detail}
                   userData={userData}
@@ -73,6 +73,9 @@ const ProfileCardComponent = ({
                   active={switchViews?.transactions?.detail}
                 />
               </div>
+            </div>
+            <div className="col-md-4 d-block d-md-none">
+              <CreditCards cardDetails={cardDetails} />
             </div>
           </div>
         </div>

@@ -11,6 +11,17 @@ const userLogin = async(email, password) => {
     return response;
 };
 
+const getUserCards = async(email, cardHolderId) => {
+    const body = {
+        email: email,
+        cardHolderId: cardHolderId,
+    };
+    const response =
+        (await http.apicall(apimethods.POST, "/users/cards", body)) || {};
+    return response;
+};
+
 export default {
     userLogin,
+    getUserCards
 };

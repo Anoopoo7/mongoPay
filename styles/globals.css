@@ -134,6 +134,11 @@ body {
     color: #0062cc;
 }
 
+.pointer:hover {
+    cursor: pointer;
+    border: 0.1px solid green;
+}
+
 
 /* login */
 

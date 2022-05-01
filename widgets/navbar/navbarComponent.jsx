@@ -39,6 +39,7 @@ const NavbarComponent = ({
             className={`navbar-nav ${
               userLogged?.active ? "ml-auto" : "m-auto"
             }`}
+            onClick={handleNavToggler}
           >
             <li className={`nav-item ${urlpath === "/offers" ? "active" : ""}`}>
               <span className="m-3">
