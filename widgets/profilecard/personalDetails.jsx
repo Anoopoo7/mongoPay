@@ -1,4 +1,4 @@
-const PersonalDetails = ({ active }) => {
+const PersonalDetails = ({ active, userData }) => {
   return (
     <>
       <div
@@ -12,7 +12,7 @@ const PersonalDetails = ({ active }) => {
             <label>User Id</label>
           </div>
           <div className="col-md-6">
-            <p>Kshiti123</p>
+            <p>{userData?.id}</p>
           </div>
         </div>
         <div className="row">
@@ -20,7 +20,7 @@ const PersonalDetails = ({ active }) => {
             <label>Name</label>
           </div>
           <div className="col-md-6">
-            <p>Kshiti Ghelani</p>
+            <p>{userData.name}</p>
           </div>
         </div>
         <div className="row">
@@ -28,7 +28,7 @@ const PersonalDetails = ({ active }) => {
             <label>Email</label>
           </div>
           <div className="col-md-6">
-            <p>kshitighelani@gmail.com</p>
+            <p>{userData?.email}</p>
           </div>
         </div>
         <div className="row">
@@ -36,15 +36,15 @@ const PersonalDetails = ({ active }) => {
             <label>Phone</label>
           </div>
           <div className="col-md-6">
-            <p>123 456 7890</p>
+            <p>{userData?.phoneNumber}</p>
           </div>
         </div>
         <div className="row">
           <div className="col-md-6">
-            <label>Profession</label>
+            <label>Type of account</label>
           </div>
           <div className="col-md-6">
-            <p>Web Developer and Designer</p>
+            <p>{userData?.type?.toLowerCase()}</p>
           </div>
         </div>
       </div>

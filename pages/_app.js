@@ -2,9 +2,12 @@ import "../styles/globals.css";
 import "bootstrap/dist/css/bootstrap.css";
 import LayoutComponent from "../layout/LayoutComponent";
 import { useState, useEffect } from "react";
+import GlobalLoader from "../layout/loader";
 
 function MyApp({ Component, pageProps }) {
   const [userData, setUserData] = useState({});
+  const [loading, setLoading] = useState(false);
+
   const clearUserData = () => {
     setUserData({});
   };
@@ -14,12 +17,16 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <LayoutComponent userData={userData}>
-      <Component
-        {...pageProps}
-        userData={userData}
-        clearUserData={clearUserData}
-        setUserdata={setUserdata}
-      />{" "}
+      {loading ? (
+        <GlobalLoader />
+      ) : (
+        <Component
+          {...pageProps}
+          userData={userData}
+          clearUserData={clearUserData}
+          setUserdata={setUserdata}
+        />
+      )}
     </LayoutComponent>
   );
 }

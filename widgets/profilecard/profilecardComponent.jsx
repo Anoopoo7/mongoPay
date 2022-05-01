@@ -2,7 +2,13 @@ import CreditCards from "./creditcards";
 import PersonalDetails from "./personalDetails";
 import TransactionDetails from "./transactionDetails";
 
-const ProfileCardComponent = ({ switchViews, handleSwitchViews, logout }) => {
+const ProfileCardComponent = ({
+  switchViews,
+  handleSwitchViews,
+  logout,
+  userData,
+  cardDetails
+}) => {
   return (
     <>
       <div className="container emp-profile">
@@ -10,10 +16,11 @@ const ProfileCardComponent = ({ switchViews, handleSwitchViews, logout }) => {
           <div className="row">
             <div className="col-md-6">
               <div className="profile-head">
-                <h5>Kshiti Ghelani</h5>
-                <h6>Web Developer and Designer</h6>
+                <h5>{userData?.name}</h5>
+                <h6>{userData?.type}</h6>
                 <p className="proile-rating">
-                  RANKINGS : <span>8/10</span>
+                  Balance :{" "}
+                  <span>{userData?.balance ? userData?.balance : "Nill"}</span>
                 </p>
                 <ul className="nav nav-tabs" id="myTab" role="tablist">
                   <li className="nav-item">
@@ -54,11 +61,14 @@ const ProfileCardComponent = ({ switchViews, handleSwitchViews, logout }) => {
           </div>
           <div className="row">
             <div className="col-md-4">
-              <CreditCards />
+              <CreditCards cardDetails={cardDetails}/>
             </div>
             <div className="col-md-8">
               <div className="tab-content profile-tab" id="myTabContent">
-                <PersonalDetails active={switchViews?.about?.detail} />
+                <PersonalDetails
+                  active={switchViews?.about?.detail}
+                  userData={userData}
+                />
                 <TransactionDetails
                   active={switchViews?.transactions?.detail}
                 />

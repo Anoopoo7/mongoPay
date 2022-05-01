@@ -1,25 +1,31 @@
-const CreditCards = () => {
+const CreditCards = ({ cardDetails }) => {
   return (
     <>
       <div className="profile-work">
-        <p>WORK LINK</p>
-        <a href="">Website Link</a>
-        <br />
-        <a href="">Bootsnipp Profile</a>
-        <br />
-        <a href="">Bootply Profile</a>
-
-        <p>SKILLS</p>
-        <a href="">Web Designer</a>
-        <br />
-        <a href="">Web Developer</a>
-        <br />
-        <a href="">WordPress</a>
-        <br />
-        <a href="">WooCommerce</a>
-        <br />
-        <a href="">PHP, .Net</a>
-        <br />
+        <p>CARD DETAILS</p>
+        {cardDetails && Array.isArray(cardDetails) && cardDetails.length > 0 ? (
+          cardDetails.map((each) => (
+            <>
+            <div className="card p-3 m-1">
+              <b>{each.cardName}</b>
+              <b>{each?.cardNumber?.slice(0,4) +" "+each?.cardNumber?.slice(4,8)+" "+each?.cardNumber?.slice(8,12)+" "+each?.cardNumber?.slice(12,16)}</b>
+              <span>Balance: {each.balance}</span>
+            </div>
+            </>
+          ))
+        ) : (
+          <>
+            <small className="text-warning">No cards found !</small>
+            <br />
+            <small className="text-secondary">
+              you can request for a new card any of the bank you wish, after
+              cheching your profile, bank will provide you card
+            </small>
+            <br />
+            <br />
+            <button className="btn btn-sm btn-warning">Request Card</button>
+          </>
+        )}
       </div>
     </>
   );

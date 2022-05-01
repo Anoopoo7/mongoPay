@@ -27,7 +27,7 @@ const Profile = (props) => {
       { shallow: true }
     );
   };
-  return <ProfileCardContainer logout={logout} />;
+  return <ProfileCardContainer logout={logout} userData={props.userData} />;
 };
 
 export default Profile;
