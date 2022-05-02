@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
 import ProfileCardComponent from "./profilecardComponent";
 import { useRouter } from "next/router";
 import userServices from "../../services/userServices";
@@ -18,6 +18,7 @@ const ProfileCardContainer = ({ logout, userData }) => {
     },
   });
   const [cardDetails, setCardDetails] = useState({});
+  const [balance,setBalance] = useState(null);
   const handleSwitchViews = () => {
     if (switchViews.about.ariaSelected) {
       setSwitchViews({
@@ -47,7 +48,7 @@ const ProfileCardContainer = ({ logout, userData }) => {
       },
     });
   };
-  useEffect(() => {
+  useMemo(() => {
     if (userData) {
       const getCards = async () => {
         const response = await userServices.getUserCards(
@@ -60,6 +61,12 @@ const ProfileCardContainer = ({ logout, userData }) => {
           response?.data.length > 0
         ) {
           setCardDetails(response.data);
+          var balance = 0;
+          response.data.forEach(card => {
+            balance+=card.balance|0;
+          });
+          setBalance(balance)
+          console.log(balance);
         }
       };
       getCards();
@@ -72,6 +79,7 @@ const ProfileCardContainer = ({ logout, userData }) => {
       logout={logout}
       userData={userData}
       cardDetails={cardDetails}
+      balance={balance}
     />
   );
 };

@@ -8,6 +8,7 @@ const ProfileCardComponent = ({
   logout,
   userData,
   cardDetails,
+  balance,
 }) => {
   return (
     <>
@@ -19,8 +20,7 @@ const ProfileCardComponent = ({
                 <h5>{userData?.name}</h5>
                 <h6>{userData?.type}</h6>
                 <p className="proile-rating">
-                  Balance :{" "}
-                  <span>{userData?.balance ? userData?.balance : "Nill"}</span>
+                  Balance : <span>{balance ? balance : "Nill"}</span>
                 </p>
                 <ul className="nav nav-tabs" id="myTab" role="tablist">
                   <li className="nav-item">
