@@ -9,6 +9,8 @@ const ProfileCardComponent = ({
   userData,
   cardDetails,
   balance,
+  editProfile,
+  setEditProfile,
 }) => {
   return (
     <>
@@ -53,7 +55,14 @@ const ProfileCardComponent = ({
               </div>
             </div>
             <div className="col-md-2 ml-auto">
-              <button className="btn btn-warning m-1">Edit</button>
+              {!editProfile && (
+                <button
+                  className="btn btn-warning m-1"
+                  onClick={() => setEditProfile(true)}
+                >
+                  Edit
+                </button>
+              )}
               <button className="btn btn-danger m-1" onClick={logout}>
                 logout
               </button>
@@ -68,13 +77,15 @@ const ProfileCardComponent = ({
                 <PersonalDetails
                   active={switchViews?.about?.detail}
                   userData={userData}
+                  editProfile={editProfile}
+                  setEditProfile={setEditProfile}
                 />
                 <TransactionDetails
                   active={switchViews?.transactions?.detail}
                 />
               </div>
             </div>
-            <div className="col-md-4 d-block d-md-none">
+            <div className="col-md-4 d-block d-md-none mt-4 ">
               <CreditCards cardDetails={cardDetails} />
             </div>
           </div>

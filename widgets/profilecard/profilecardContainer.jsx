@@ -5,6 +5,9 @@ import userServices from "../../services/userServices";
 
 const ProfileCardContainer = ({ logout, userData }) => {
   const router = useRouter();
+  const [cardDetails, setCardDetails] = useState({});
+  const [balance, setBalance] = useState(null);
+  const [editProfile, setEditProfile] = useState(false);
   const [switchViews, setSwitchViews] = useState({
     about: {
       active: "active",
@@ -17,8 +20,6 @@ const ProfileCardContainer = ({ logout, userData }) => {
       detail: "",
     },
   });
-  const [cardDetails, setCardDetails] = useState({});
-  const [balance,setBalance] = useState(null);
   const handleSwitchViews = () => {
     if (switchViews.about.ariaSelected) {
       setSwitchViews({
@@ -62,10 +63,10 @@ const ProfileCardContainer = ({ logout, userData }) => {
         ) {
           setCardDetails(response.data);
           var balance = 0;
-          response.data.forEach(card => {
-            balance+=card.balance|0;
+          response.data.forEach((card) => {
+            balance += card.balance | 0;
           });
-          setBalance(balance)
+          setBalance(balance);
           console.log(balance);
         }
       };
@@ -80,6 +81,8 @@ const ProfileCardContainer = ({ logout, userData }) => {
       userData={userData}
       cardDetails={cardDetails}
       balance={balance}
+      editProfile={editProfile}
+      setEditProfile={setEditProfile}
     />
   );
 };

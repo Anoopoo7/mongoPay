@@ -1,4 +1,4 @@
-const PersonalDetails = ({ active, userData }) => {
+const PersonalDetails = ({ active, userData, editProfile, setEditProfile }) => {
   return (
     <>
       <div
@@ -12,7 +12,10 @@ const PersonalDetails = ({ active, userData }) => {
             <label>User Id</label>
           </div>
           <div className="col-md-6">
-            <p>{userData?.id}</p>
+            {!editProfile && <p>{userData?.id}</p>}
+            {editProfile && (
+              <input type="text" className="form-control m-1" disabled defaultValue={userData.id} />
+            )}
           </div>
         </div>
         <div className="row">
@@ -20,7 +23,8 @@ const PersonalDetails = ({ active, userData }) => {
             <label>Name</label>
           </div>
           <div className="col-md-6">
-            <p>{userData.name}</p>
+            {!editProfile && <p>{userData.name}</p>}
+            {editProfile && <input type="text" className="form-control m-1" defaultValue={userData.name} />}
           </div>
         </div>
         <div className="row">
@@ -28,7 +32,8 @@ const PersonalDetails = ({ active, userData }) => {
             <label>Email</label>
           </div>
           <div className="col-md-6">
-            <p>{userData?.email}</p>
+            {!editProfile && <p>{userData.email}</p>}
+            {editProfile && <input type="text" className="form-control m-1" defaultValue={userData.email} />}
           </div>
         </div>
         <div className="row">
@@ -36,7 +41,10 @@ const PersonalDetails = ({ active, userData }) => {
             <label>Phone</label>
           </div>
           <div className="col-md-6">
-            <p>{userData?.phoneNumber}</p>
+            {!editProfile && <p>{userData.phoneNumber}</p>}
+            {editProfile && (
+              <input type="text" className="form-control m-1" defaultValue={userData.phoneNumber} />
+            )}
           </div>
         </div>
         <div className="row">
@@ -44,9 +52,23 @@ const PersonalDetails = ({ active, userData }) => {
             <label>Type of account</label>
           </div>
           <div className="col-md-6">
-            <p>{userData?.type?.toLowerCase()}</p>
+            {!editProfile && <p>{userData?.type?.toLowerCase()}</p>}
+            {editProfile && (
+              <input
+                type="text"
+                disabled
+                className="form-control m-1"
+                defaultValue={userData?.type?.toLowerCase()}
+              />
+            )}
           </div>
         </div>
+        {editProfile && (
+          <>
+            <button className="btn btn-outline-success mt-3" onClick={()=>setEditProfile(false)}> cancel</button>
+            <button className="btn btn-success mt-3 ml-3"> submit</button>
+          </>
+        )}
       </div>
     </>
   );
