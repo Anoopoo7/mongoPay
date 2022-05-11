@@ -1,4 +1,24 @@
-const PersonalDetails = ({ active, userData, editProfile, setEditProfile }) => {
+import { useRef } from "react";
+
+const PersonalDetails = ({
+  active,
+  userData,
+  editProfile,
+  setEditProfile,
+  editProfileDataHandler,
+}) => {
+  const id = useRef(null);
+  const name = useRef(null);
+  const email = useRef(null);
+  const phone = useRef(null);
+  const handleEdit = () => {
+    editProfileDataHandler(
+      id.current.value,
+      name.current.value,
+      email.current.value,
+      phone.current.value
+    );
+  };
   return (
     <>
       <div
@@ -14,7 +34,13 @@ const PersonalDetails = ({ active, userData, editProfile, setEditProfile }) => {
           <div className="col-md-6">
             {!editProfile && <p>{userData?.id}</p>}
             {editProfile && (
-              <input type="text" className="form-control m-1" disabled defaultValue={userData.id} />
+              <input
+                type="text"
+                className="form-control m-1"
+                disabled
+                defaultValue={userData.id}
+                ref={id}
+              />
             )}
           </div>
         </div>
@@ -24,7 +50,14 @@ const PersonalDetails = ({ active, userData, editProfile, setEditProfile }) => {
           </div>
           <div className="col-md-6">
             {!editProfile && <p>{userData.name}</p>}
-            {editProfile && <input type="text" className="form-control m-1" defaultValue={userData.name} />}
+            {editProfile && (
+              <input
+                type="text"
+                className="form-control m-1"
+                defaultValue={userData.name}
+                ref={name}
+              />
+            )}
           </div>
         </div>
         <div className="row">
@@ -33,7 +66,14 @@ const PersonalDetails = ({ active, userData, editProfile, setEditProfile }) => {
           </div>
           <div className="col-md-6">
             {!editProfile && <p>{userData.email}</p>}
-            {editProfile && <input type="text" className="form-control m-1" defaultValue={userData.email} />}
+            {editProfile && (
+              <input
+                type="text"
+                className="form-control m-1"
+                defaultValue={userData.email}
+                ref={email}
+              />
+            )}
           </div>
         </div>
         <div className="row">
@@ -43,7 +83,12 @@ const PersonalDetails = ({ active, userData, editProfile, setEditProfile }) => {
           <div className="col-md-6">
             {!editProfile && <p>{userData.phoneNumber}</p>}
             {editProfile && (
-              <input type="text" className="form-control m-1" defaultValue={userData.phoneNumber} />
+              <input
+                type="text"
+                className="form-control m-1"
+                defaultValue={userData.phoneNumber}
+                ref={phone}
+              />
             )}
           </div>
         </div>
@@ -65,8 +110,17 @@ const PersonalDetails = ({ active, userData, editProfile, setEditProfile }) => {
         </div>
         {editProfile && (
           <>
-            <button className="btn btn-outline-success mt-3" onClick={()=>setEditProfile(false)}> cancel</button>
-            <button className="btn btn-success mt-3 ml-3"> submit</button>
+            <button
+              className="btn btn-outline-success mt-3"
+              onClick={() => setEditProfile(false)}
+            >
+              {" "}
+              cancel
+            </button>
+            <button className="btn btn-success mt-3 ml-3" onClick={handleEdit}>
+              {" "}
+              submit
+            </button>
           </>
         )}
       </div>

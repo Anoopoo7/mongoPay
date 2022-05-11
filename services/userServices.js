@@ -23,6 +23,18 @@ const userRegister = async(name, email, phone, password) => {
     return response;
 };
 
+const editUserDetails = async(id, name, email, phone) => {
+    const body = {
+        id: id,
+        name: name,
+        email: email,
+        phoneNumber: phone,
+    };
+    const response =
+        (await http.apicall(apimethods.POST, "/users/edit", body)) || {};
+    return response;
+};
+
 const getUserCards = async(email, cardHolderId) => {
     const body = {
         email: email,
@@ -36,5 +48,6 @@ const getUserCards = async(email, cardHolderId) => {
 export default {
     userLogin,
     getUserCards,
-    userRegister
+    userRegister,
+    editUserDetails,
 };

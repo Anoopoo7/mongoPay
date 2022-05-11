@@ -11,6 +11,7 @@ const ProfileCardComponent = ({
   balance,
   editProfile,
   setEditProfile,
+  editProfileDataHandler,
 }) => {
   return (
     <>
@@ -79,6 +80,7 @@ const ProfileCardComponent = ({
                   userData={userData}
                   editProfile={editProfile}
                   setEditProfile={setEditProfile}
+                  editProfileDataHandler={editProfileDataHandler}
                 />
                 <TransactionDetails
                   active={switchViews?.transactions?.detail}

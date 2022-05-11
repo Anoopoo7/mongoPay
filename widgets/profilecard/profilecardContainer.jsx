@@ -1,10 +1,9 @@
 import { useState, useMemo } from "react";
 import ProfileCardComponent from "./profilecardComponent";
-import { useRouter } from "next/router";
 import userServices from "../../services/userServices";
+import Router from "next/router";
 
-const ProfileCardContainer = ({ logout, userData }) => {
-  const router = useRouter();
+const ProfileCardContainer = ({ logout, userData, setUserdata }) => {
   const [cardDetails, setCardDetails] = useState({});
   const [balance, setBalance] = useState(null);
   const [editProfile, setEditProfile] = useState(false);
@@ -73,6 +72,25 @@ const ProfileCardContainer = ({ logout, userData }) => {
       getCards();
     }
   }, [userData]);
+
+  const editProfileDataHandler = async (id, name, email, phone) => {
+    console.log(id, name, email, phone);
+    const userdata = await userServices.editUserDetails(id, name, email, phone);
+    if (userdata?.data?.active) {
+      alert("user details changed");
+      setUserdata(userdata.data);
+      Router.push(
+        {
+          pathname: "/",
+        },
+        undefined,
+        { shallow: true }
+      );
+      return;
+    }
+    alert("user already exists with this details");
+  };
+
   return (
     <ProfileCardComponent
       switchViews={switchViews}
@@ -83,6 +101,7 @@ const ProfileCardContainer = ({ logout, userData }) => {
       balance={balance}
       editProfile={editProfile}
       setEditProfile={setEditProfile}
+      editProfileDataHandler={editProfileDataHandler}
     />
   );
 };
