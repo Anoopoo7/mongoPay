@@ -1,6 +1,16 @@
+import { useState } from "react";
+import BankReqContainer from "./bankReqContainer";
+
 const CreditCards = ({ cardDetails }) => {
+  const [showBankReq, setShowbankReq] = useState(false);
+  const handlebankRequset = () => {
+    setShowbankReq(!showBankReq);
+  };
   return (
     <>
+      {showBankReq && (
+        <BankReqContainer handlebankRequset={handlebankRequset} />
+      )}
       <div className="profile-work">
         <p>CARD DETAILS</p>
         {cardDetails && Array.isArray(cardDetails) && cardDetails.length > 0 ? (
@@ -19,7 +29,12 @@ const CreditCards = ({ cardDetails }) => {
                 </b>
                 <span>Balance: {each.balance}</span>
               </div>
-              <button className="btn btn-sm btn-warning m-1">Get More Cards</button>
+              <button
+                className="btn btn-sm btn-warning m-1"
+                onClick={handlebankRequset}
+              >
+                Get More Cards
+              </button>
             </div>
           ))
         ) : (
@@ -32,7 +47,12 @@ const CreditCards = ({ cardDetails }) => {
             </small>
             <br />
             <br />
-            <button className="btn btn-sm btn-warning">Request Card</button>
+            <button
+              className="btn btn-sm btn-warning"
+              onClick={handlebankRequset}
+            >
+              Request Card
+            </button>
           </>
         )}
       </div>
