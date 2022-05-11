@@ -7,6 +7,10 @@ const AuthContainer = ({ setUserdata }) => {
   const [login, setLogin] = useState(true);
   const [message, setMessage] = useState("");
   let user = {};
+  const handleLoggingToggler = () => {
+    setLogin(!login);
+    setMessage("");
+  };
   const loginHandle = async (email, password) => {
     if (
       email !== null &&
@@ -15,7 +19,7 @@ const AuthContainer = ({ setUserdata }) => {
       password !== ""
     ) {
       const setUserData = await userServices.userLogin(email, password);
-      if (setUserData && setUserData.data) {
+      if (setUserData && setUserData?.data?.active) {
         setUserdata(setUserData?.data);
         Router.push(
           {
@@ -29,12 +33,31 @@ const AuthContainer = ({ setUserdata }) => {
       }
     }
   };
+  const registerHandle = async (name, email, phone, password, Cpassword) => {
+    if (password !== Cpassword) {
+      setMessage("mismatch in passwords");
+      return;
+    }
+    const setUserData = await userServices.userRegister(name,email,phone,password);
+    if(setUserData?.data?.active){
+      setUserdata(setUserData?.data);
+      Router.push(
+        {
+          pathname: "/",
+        },
+        undefined,
+        { shallow: true }
+      );
+    }
+    setMessage("user is already exist!")
+  };
 
   return (
     <AuthComponent
       login={login}
-      setLogin={setLogin}
+      handleLoggingToggler={handleLoggingToggler}
       loginHandle={loginHandle}
+      registerHandle={registerHandle}
       message={message}
     />
   );

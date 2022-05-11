@@ -1,7 +1,13 @@
 import LoginComponent from "./logincomponent";
 import RegisterComponent from "./registercomponent";
 
-const AuthComponent = ({ login, setLogin, loginHandle, message }) => {
+const AuthComponent = ({
+  login,
+  handleLoggingToggler,
+  loginHandle,
+  message,
+  registerHandle,
+}) => {
   return (
     <>
       <div className="outer-80">
@@ -21,7 +27,10 @@ const AuthComponent = ({ login, setLogin, loginHandle, message }) => {
                 {login ? (
                   <LoginComponent loginHandle={loginHandle} message={message} />
                 ) : (
-                  <RegisterComponent />
+                  <RegisterComponent
+                    registerHandle={registerHandle}
+                    message={message}
+                  />
                 )}
               </div>
 
@@ -30,12 +39,7 @@ const AuthComponent = ({ login, setLogin, loginHandle, message }) => {
                   <>
                     <div className="d-flex justify-content-center links">
                       Don't have an account?{" "}
-                      <a
-                        className="ml-2"
-                        onClick={() => {
-                          setLogin(false);
-                        }}
-                      >
+                      <a className="ml-2" onClick={handleLoggingToggler}>
                         Sign Up
                       </a>
                     </div>
@@ -46,12 +50,7 @@ const AuthComponent = ({ login, setLogin, loginHandle, message }) => {
                 ) : (
                   <div className="d-flex justify-content-center links">
                     already have an account?{" "}
-                    <a
-                      className="ml-2"
-                      onClick={() => {
-                        setLogin(true);
-                      }}
-                    >
+                    <a className="ml-2" onClick={handleLoggingToggler}>
                       Sign In
                     </a>
                   </div>
