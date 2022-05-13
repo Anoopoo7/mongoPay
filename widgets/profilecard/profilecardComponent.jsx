@@ -12,6 +12,7 @@ const ProfileCardComponent = ({
   editProfile,
   setEditProfile,
   editProfileDataHandler,
+  setCardDetails,
 }) => {
   return (
     <>
@@ -71,7 +72,10 @@ const ProfileCardComponent = ({
           </div>
           <div className="row">
             <div className="col-md-4 d-none d-md-block">
-              <CreditCards cardDetails={cardDetails} />
+              <CreditCards
+                cardDetails={cardDetails}
+                setCardDetails={setCardDetails}
+              />
             </div>
             <div className="col-md-8">
               <div className="tab-content profile-tab m-3" id="myTabContent">
@@ -88,7 +92,10 @@ const ProfileCardComponent = ({
               </div>
             </div>
             <div className="col-md-4 d-block d-md-none mt-4 ">
-              <CreditCards cardDetails={cardDetails} />
+              <CreditCards
+                cardDetails={cardDetails}
+                setCardDetails={setCardDetails}
+              />
             </div>
           </div>
         </div>

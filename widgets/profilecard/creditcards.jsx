@@ -1,8 +1,11 @@
 import { useState } from "react";
 import BankReqContainer from "./bankReqContainer";
+import CardDetailsContainer from "./cardDetailsContainer";
 
-const CreditCards = ({ cardDetails }) => {
+const CreditCards = ({ cardDetails, setCardDetails }) => {
   const [showBankReq, setShowbankReq] = useState(false);
+  const [showCardDetails, setShowCardDetails] = useState(false);
+  const [ClickedCardDetails, setClickedCardDetails] = useState(null);
   const handlebankRequset = () => {
     setShowbankReq(!showBankReq);
   };
@@ -11,12 +14,25 @@ const CreditCards = ({ cardDetails }) => {
       {showBankReq && (
         <BankReqContainer handlebankRequset={handlebankRequset} />
       )}
+      {showCardDetails && (
+        <CardDetailsContainer
+          setShowCardDetails={setShowCardDetails}
+          ClickedCardDetails={ClickedCardDetails}
+          setCardDetails={setCardDetails}
+        />
+      )}
       <div className="profile-work">
         <p>CARD DETAILS</p>
         {cardDetails && Array.isArray(cardDetails) && cardDetails.length > 0 ? (
           cardDetails.map((each) => (
-            <div key={each.id}>
-              <div className="card p-3 m-1 pointer">
+            <div
+              key={each.id}
+              onClick={() => {
+                setShowCardDetails(true);
+                setClickedCardDetails(each);
+              }}
+            >
+              <div className={`card p-3 m-1 pointer ${each.primaryCard ? "border border-success" : ""}`}>
                 <b>{each.cardName}</b>
                 <b>
                   {each?.cardNumber?.slice(0, 4) +

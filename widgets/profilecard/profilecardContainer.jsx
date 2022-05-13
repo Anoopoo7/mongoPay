@@ -4,7 +4,7 @@ import userServices from "../../services/userServices";
 import Router from "next/router";
 
 const ProfileCardContainer = ({ logout, userData, setUserdata }) => {
-  const [cardDetails, setCardDetails] = useState({});
+  const [cardDetails, setCardDetails] = useState(null);
   const [balance, setBalance] = useState(null);
   const [editProfile, setEditProfile] = useState(false);
   const [switchViews, setSwitchViews] = useState({
@@ -48,7 +48,7 @@ const ProfileCardContainer = ({ logout, userData, setUserdata }) => {
       },
     });
   };
-  useMemo(() => {
+  useState(() => {
     if (userData) {
       const getCards = async () => {
         const response = await userServices.getUserCards(
@@ -90,7 +90,6 @@ const ProfileCardContainer = ({ logout, userData, setUserdata }) => {
     }
     alert("user already exists with this details");
   };
-
   return (
     <ProfileCardComponent
       switchViews={switchViews}
@@ -102,6 +101,7 @@ const ProfileCardContainer = ({ logout, userData, setUserdata }) => {
       editProfile={editProfile}
       setEditProfile={setEditProfile}
       editProfileDataHandler={editProfileDataHandler}
+      setCardDetails={setCardDetails}
     />
   );
 };
