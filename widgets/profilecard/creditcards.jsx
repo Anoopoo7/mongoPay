@@ -29,12 +29,6 @@ const CreditCards = ({ cardDetails }) => {
                 </b>
                 <span>Balance: {each.balance}</span>
               </div>
-              <button
-                className="btn btn-sm btn-warning m-1"
-                onClick={handlebankRequset}
-              >
-                Get More Cards
-              </button>
             </div>
           ))
         ) : (
@@ -47,14 +41,14 @@ const CreditCards = ({ cardDetails }) => {
             </small>
             <br />
             <br />
-            <button
-              className="btn btn-sm btn-warning"
-              onClick={handlebankRequset}
-            >
-              Request Card
-            </button>
           </>
         )}
+        <button
+          className="btn btn-sm btn-warning m-1"
+          onClick={handlebankRequset}
+        >
+          Get More Cards
+        </button>
       </div>
     </>
   );

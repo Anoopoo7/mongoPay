@@ -11,11 +11,23 @@ const BankReqContainer = ({ handlebankRequset }) => {
   useEffect(() => {
     banknameFetching();
   }, []);
+  const bankRequest = async (username, email, bankId) => {
+    const response = await bankServices.sendBankRequest(
+      username,
+      email,
+      bankId
+    );
+    if (response?.data) {
+      alert(response?.data);
+      handlebankRequset();
+    }
+  };
   return (
     <>
       <BankRequestComponent
         handlebankRequset={handlebankRequset}
         banks={banks}
+        bankRequest={bankRequest}
       />
     </>
   );

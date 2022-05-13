@@ -1,4 +1,16 @@
-const BankRequestComponent = ({ handlebankRequset, banks }) => {
+import { useRef } from "react";
+
+const BankRequestComponent = ({ handlebankRequset, banks, bankRequest }) => {
+  const username = useRef(null);
+  const email = useRef(null);
+  const bankId = useRef(null);
+  const handleSubmit = () => {
+    bankRequest(
+      username.current.value,
+      email.current.value,
+      bankId.current.value
+    );
+  };
   return (
     <>
       <div
@@ -37,6 +49,7 @@ const BankRequestComponent = ({ handlebankRequset, banks }) => {
                     name="username"
                     placeholder="Username"
                     required="required"
+                    ref={username}
                   />
                 </div>
                 <div class="form-group">
@@ -46,10 +59,11 @@ const BankRequestComponent = ({ handlebankRequset, banks }) => {
                     name="email"
                     placeholder="email"
                     required="required"
+                    ref={email}
                   />
                 </div>
                 <div class="form-group">
-                  <select name="Bank" class="form-control">
+                  <select name="Bank" ref={bankId} class="form-control">
                     <option value="null">Choose Bank</option>
                     {banks.map((each) => (
                       <option key={each.id} value={each.id}>
@@ -63,6 +77,7 @@ const BankRequestComponent = ({ handlebankRequset, banks }) => {
                   <button
                     type="submit"
                     class="btn btn-primary btn-lg btn-block login-btn"
+                    onClick={handleSubmit}
                   >
                     Send Request
                   </button>
