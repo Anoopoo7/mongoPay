@@ -1,3 +1,5 @@
+import ChangeOtpContainer from "./changeOtpContainer";
+
 const CardDetailsComponent = ({
   setShowCardDetails,
   ClickedCardDetails,
@@ -68,6 +70,9 @@ const CardDetailsComponent = ({
                         </td>
                         <td>: {ClickedCardDetails?.minimumBalance}</td>
                       </tr>
+                      <ChangeOtpContainer
+                        ClickedCardDetails={ClickedCardDetails}
+                      />
                     </table>
                     <li className="list-group-item rounded d-flex d-md-block">
                       Make it Primary Card
@@ -86,10 +91,7 @@ const CardDetailsComponent = ({
                     </li>
                   </div>
                   <div className="form-group container p-4">
-                    <button
-                      type="submit"
-                      className="btn btn-outline-success btn-lg btn-block login-btn"
-                    >
+                    <button className="btn btn-outline-success btn-lg btn-block login-btn">
                       Upgrade
                     </button>
                   </div>
