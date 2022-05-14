@@ -7,6 +7,13 @@ const searchUser = async(searchTerm) => {
     return response;
 };
 
+const getFriendUsers = async(userId) => {
+    const response =
+        (await http.apicall(apimethods.GET, `/transaction/frienduser/${userId}`)) || {};
+    return response;
+};
+
 export default {
     searchUser,
+    getFriendUsers,
 };
