@@ -4,6 +4,7 @@ import { useState } from "react";
 
 const TransactionContainer = ({ userData }) => {
   const [availableUsers, setAvailableUsers] = useState([]);
+  const [selectedUser, setSelectedUser] = useState(null);
   const searchuser = async (searchTerm) => {
     const response = await transactionService.searchUser(searchTerm);
     if (
@@ -16,11 +17,17 @@ const TransactionContainer = ({ userData }) => {
       setAvailableUsers([]);
     }
   };
+  const HandleSelectedUSer = (user, laseseen) => {
+    user.lastseen = laseseen;
+    setSelectedUser(user);
+  };
   return (
     <>
       <TransactionComponent
         searchuser={searchuser}
         availableUsers={availableUsers}
+        setSelectedUser={HandleSelectedUSer}
+        selectedUser={selectedUser}
       />
     </>
   );

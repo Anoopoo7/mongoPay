@@ -3,7 +3,6 @@ import ChangeOtpComponent from "./changeOtpComponent";
 import creditcardServices from "../../services/creditcardServices";
 
 const ChangeOtpContainer = ({ ClickedCardDetails }) => {
-  console.log(ClickedCardDetails);
   const [showForm, setShowForm] = useState(false);
   const changeOptRequest = async (oldOTP, newOTP) => {
     if (

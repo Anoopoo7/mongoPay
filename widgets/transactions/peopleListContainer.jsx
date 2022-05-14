@@ -1,6 +1,10 @@
 import PeopleListComponent from "./peopleListComponent";
 
-const PeopleListContainer = ({ searchuser, availableUsers }) => {
+const PeopleListContainer = ({
+  searchuser,
+  availableUsers,
+  setSelectedUser,
+}) => {
   const getExactTime = (times) => {
     const [day, time] = times.split("T") || [];
     const [hrs, mins, sec] = time.split(":") || [];
@@ -19,7 +23,6 @@ const PeopleListContainer = ({ searchuser, availableUsers }) => {
     const today = new Date().toISOString();
     const currentExT = getExactTime(today.slice(0, 22));
     const LastExT = getExactTime(time.slice(0, 22));
-    console.log(LastExT);
     if (currentExT.year == LastExT.year) {
       if (currentExT.month == LastExT.month) {
         if (currentExT.date == LastExT.date) {
@@ -50,6 +53,7 @@ const PeopleListContainer = ({ searchuser, availableUsers }) => {
         searchuser={searchuser}
         availableUsers={availableUsers}
         convertTime={convertTime}
+        setSelectedUser={setSelectedUser}
       />
     </>
   );

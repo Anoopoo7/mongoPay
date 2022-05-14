@@ -1,7 +1,12 @@
 import ChatContainer from "./chantContainer";
 import PeopleListContainer from "./peopleListContainer";
 
-const TransactionComponent = ({ searchuser, availableUsers }) => {
+const TransactionComponent = ({
+  searchuser,
+  availableUsers,
+  setSelectedUser,
+  selectedUser,
+}) => {
   return (
     <>
       <div className="container">
@@ -11,8 +16,9 @@ const TransactionComponent = ({ searchuser, availableUsers }) => {
               <PeopleListContainer
                 searchuser={searchuser}
                 availableUsers={availableUsers}
+                setSelectedUser={setSelectedUser}
               />
-              <ChatContainer />
+              <ChatContainer selectedUser={selectedUser} />
             </div>
           </div>
         </div>

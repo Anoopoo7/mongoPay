@@ -1,5 +1,9 @@
-const PeopleListComponent = ({ searchuser, availableUsers, convertTime }) => {
-  console.log(availableUsers);
+const PeopleListComponent = ({
+  searchuser,
+  availableUsers,
+  convertTime,
+  setSelectedUser,
+}) => {
   return (
     <>
       <div id="plist" className="people-list">
@@ -18,7 +22,13 @@ const PeopleListComponent = ({ searchuser, availableUsers, convertTime }) => {
           Array.isArray(availableUsers) &&
           availableUsers.length > 0
             ? availableUsers.map((user) => (
-                <li className="clearfix">
+                <li
+                  key={user.name}
+                  className="clearfix"
+                  onClick={() => {
+                    setSelectedUser(user, convertTime(user.lastLoggedIn));
+                  }}
+                >
                   <img
                     src="https://bootdey.com/img/Content/avatar/avatar1.png"
                     alt="avatar"

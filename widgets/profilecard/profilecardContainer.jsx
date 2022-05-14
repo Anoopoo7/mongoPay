@@ -66,7 +66,6 @@ const ProfileCardContainer = ({ logout, userData, setUserdata }) => {
             balance += card.balance | 0;
           });
           setBalance(balance);
-          console.log(balance);
         }
       };
       getCards();
@@ -74,7 +73,6 @@ const ProfileCardContainer = ({ logout, userData, setUserdata }) => {
   }, [userData]);
 
   const editProfileDataHandler = async (id, name, email, phone) => {
-    console.log(id, name, email, phone);
     const userdata = await userServices.editUserDetails(id, name, email, phone);
     if (userdata?.data?.active) {
       alert("user details changed");
