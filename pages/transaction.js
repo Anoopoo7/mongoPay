@@ -1,7 +1,7 @@
+import TransactionContainer from "../widgets/transactions/transactionContainer";
+
 const Transaction = () => {
-    return ( 
-        <h1>Authentification</h1>
-     );
-}
- 
+  return <TransactionContainer />;
+};
+
 export default Transaction;
