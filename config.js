@@ -1,6 +1,6 @@
 const getApis = () => {
-    const backendAPI = process.env.BACKENDAPI || "https://mongopay.herokuapp.com/v1";
-    const ENV = process.env.ENV || "PROD";
+    const backendAPI = process.env.BACKENDAPI || "http://localhost:8000/v1";
+    const ENV = process.env.ENV || "LOCAL";
     const AppId = process.env.APPID || "MONGOPAY";
     return { backendAPI, ENV, AppId };
 };
