@@ -6,6 +6,7 @@ const TransactionComponent = ({
   availableUsers,
   setSelectedUser,
   selectedUser,
+  userChat,
 }) => {
   return (
     <>
@@ -18,7 +19,7 @@ const TransactionComponent = ({
                 availableUsers={availableUsers}
                 setSelectedUser={setSelectedUser}
               />
-              <ChatContainer selectedUser={selectedUser} />
+              <ChatContainer selectedUser={selectedUser} userChat={userChat} />
             </div>
           </div>
         </div>

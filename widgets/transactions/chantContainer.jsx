@@ -1,9 +1,9 @@
 import ChatComponent from "./chatComponent";
 
-const ChatContainer = ({ selectedUser }) => {
+const ChatContainer = ({ selectedUser, userChat }) => {
   return (
     <>
-      <ChatComponent selectedUser={selectedUser} />
+      <ChatComponent selectedUser={selectedUser} userChat={userChat} />
     </>
   );
 };

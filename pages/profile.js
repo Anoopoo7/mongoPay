@@ -8,7 +8,7 @@ export async function getServerSideProps({ req, res }) {
     };
 }
 const Profile = (props) => {
-    if (!props ? .userData ? .active) {
+    if (!props ?.userData ?.active) {
         Router.push({
                 pathname: "/auth",
             },

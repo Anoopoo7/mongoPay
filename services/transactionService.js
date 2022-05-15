@@ -13,7 +13,15 @@ const getFriendUsers = async(userId) => {
     return response;
 };
 
+const geUtserChatByChatId = async(chatId) => {
+    const response =
+        (await http.apicall(apimethods.GET, `/transaction/chat/${chatId}`)) || {};
+    console.log(response);
+    return response;
+};
+
 export default {
     searchUser,
     getFriendUsers,
+    geUtserChatByChatId,
 };

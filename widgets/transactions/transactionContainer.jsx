@@ -1,10 +1,11 @@
 import TransactionComponent from "./transactionComponent";
 import transactionService from "../../services/transactionService";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 const TransactionContainer = ({ userData }) => {
   const [availableUsers, setAvailableUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
+  const [userChat, setUserChat] = useState(null);
 
   const fetchFriendUser = async () => {
     const response = await transactionService.getFriendUsers(userData?.id);
@@ -22,10 +23,7 @@ const TransactionContainer = ({ userData }) => {
 
   const searchuser = async (searchTerm) => {
     const response = await transactionService.searchUser(searchTerm);
-    if (
-      response?.data &&
-      Array.isArray(response?.data)
-    ) {
+    if (response?.data && Array.isArray(response?.data)) {
       setAvailableUsers(response.data);
     } else {
       fetchFriendUser();
@@ -35,6 +33,25 @@ const TransactionContainer = ({ userData }) => {
     user.lastseen = laseseen;
     setSelectedUser(user);
   };
+
+  const getUserMessages = async () => {
+    if (selectedUser == null) {
+      return;
+    }
+    const response = await transactionService.geUtserChatByChatId(
+      userData?.id + selectedUser?.id
+    );
+    if (
+      response?.data &&
+      Array.isArray(response?.data) &&
+      response?.data.length > 0
+    ) {
+      setUserChat(response?.data);
+    }
+  };
+  useMemo(() => {
+    getUserMessages();
+  }, [selectedUser]);
   return (
     <>
       <TransactionComponent
@@ -42,6 +59,7 @@ const TransactionContainer = ({ userData }) => {
         availableUsers={availableUsers}
         setSelectedUser={HandleSelectedUSer}
         selectedUser={selectedUser}
+        userChat={userChat}
       />
     </>
   );

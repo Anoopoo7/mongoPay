@@ -1,14 +1,14 @@
 import MyChat from "./mychat";
 import OtherChat from "./otherChat";
 
-const ChatComponent = ({ selectedUser }) => {
+const ChatComponent = ({ selectedUser, userChat }) => {
   return (
     <>
       {selectedUser ? (
         <div className="chat">
           <div className="chat-header clearfix">
-            <div class="row">
-              <div class="col-lg-6">
+            <div className="row">
+              <div className="col-lg-6">
                 <a
                   href="javascript:void(0);"
                   data-toggle="modal"
@@ -19,13 +19,13 @@ const ChatComponent = ({ selectedUser }) => {
                     alt="avatar"
                   />
                 </a>
-                <div class="chat-about">
-                  <h6 class="m-b-0">Aiden Chavez</h6>
-                  <small>Last seen: 2 hours ago</small>
+                <div className="chat-about">
+                  <h6 className="m-b-0">{selectedUser?.name}</h6>
+                  <small>live : {selectedUser?.lastseen}</small>
                 </div>
               </div>
-              <div class="col-lg-6 hidden-sm text-right">
-                <button class="btn btn-outline-success btn-sm">
+              <div className="col-lg-6 hidden-sm text-right">
+                <button className="btn btn-outline-success btn-sm">
                   <img
                     className="img-fluid"
                     src="/icons8-refresh-64.png"
@@ -37,8 +37,17 @@ const ChatComponent = ({ selectedUser }) => {
           </div>
           <div className="chat-history">
             <ul className="m-b-0 chat-scroll-space">
-              <MyChat />
-              <OtherChat />
+              {userChat && Array.isArray(userChat) && userChat.length > 0
+                ? userChat.map((each) => (
+                    <>
+                    {console.log(each)}
+                      {each.me && <MyChat each={each} />}
+                      {!each.me && <OtherChat each={each} />}
+                    </>
+                  ))
+                : ""}
+              {/* <MyChat /> */}
+              {/* <OtherChat /> */}
             </ul>
           </div>
           <div className="chat-message clearfix">
