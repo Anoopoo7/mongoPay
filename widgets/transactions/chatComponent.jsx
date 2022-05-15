@@ -1,7 +1,23 @@
 import MyChat from "./mychat";
 import OtherChat from "./otherChat";
+import { useRef, useEffect } from "react";
 
-const ChatComponent = ({ selectedUser, userChat }) => {
+const ChatComponent = ({
+  selectedUser,
+  userChat,
+  sendmoney,
+  getUserMessages,
+}) => {
+  const amound = useRef(null);
+  const handleSendMoney = () => {
+    const amounds = amound.current.value;
+    sendmoney(amounds, selectedUser?.id);
+    amound.current.value = "";
+  };
+  useEffect(() => {
+    let scroller = document?.getElementById("scroller");
+    scroller?.scrollTo(0, scroller?.scrollHeight);
+  }, [userChat]);
   return (
     <>
       {selectedUser ? (
@@ -30,24 +46,22 @@ const ChatComponent = ({ selectedUser, userChat }) => {
                     className="img-fluid"
                     src="/icons8-refresh-64.png"
                     alt="refresh"
+                    onClick={getUserMessages}
                   />
                 </button>
               </div>
             </div>
           </div>
           <div className="chat-history">
-            <ul className="m-b-0 chat-scroll-space">
+            <ul className="m-b-0 chat-scroll-space" id="scroller">
               {userChat && Array.isArray(userChat) && userChat.length > 0
-                ? userChat.map((each) => (
+                ? userChat.map((each, index) => (
                     <>
-                    {console.log(each)}
                       {each.me && <MyChat each={each} />}
                       {!each.me && <OtherChat each={each} />}
                     </>
                   ))
                 : ""}
-              {/* <MyChat /> */}
-              {/* <OtherChat /> */}
             </ul>
           </div>
           <div className="chat-message clearfix">
@@ -56,8 +70,14 @@ const ChatComponent = ({ selectedUser, userChat }) => {
                 type="number"
                 className="form-control"
                 placeholder="Enter Amount here..."
+                ref={amound}
               />
-              <button className="btn btn-outline-secondary">Send Money</button>
+              <button
+                className="btn btn-outline-secondary"
+                onClick={handleSendMoney}
+              >
+                Send Money
+              </button>
               <button className="btn btn-outline-secondary">
                 Request Money
               </button>

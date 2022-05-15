@@ -41,17 +41,25 @@ const TransactionContainer = ({ userData }) => {
     const response = await transactionService.geUtserChatByChatId(
       userData?.id + selectedUser?.id
     );
-    if (
-      response?.data &&
-      Array.isArray(response?.data) &&
-      response?.data.length > 0
-    ) {
+    if (response?.data && Array.isArray(response?.data)) {
       setUserChat(response?.data);
+    } else {
+      setUserChat(null);
     }
   };
   useMemo(() => {
     getUserMessages();
   }, [selectedUser]);
+
+  const sendmoney = async (amount, recieverId) => {
+    const response = await transactionService.sendMoneyByIdsAndAmount(
+      userData?.id,
+      recieverId,
+      amount | 0
+    );
+    getUserMessages();
+  };
+
   return (
     <>
       <TransactionComponent
@@ -60,6 +68,8 @@ const TransactionContainer = ({ userData }) => {
         setSelectedUser={HandleSelectedUSer}
         selectedUser={selectedUser}
         userChat={userChat}
+        sendmoney={sendmoney}
+        getUserMessages={getUserMessages}
       />
     </>
   );

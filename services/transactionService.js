@@ -16,7 +16,17 @@ const getFriendUsers = async(userId) => {
 const geUtserChatByChatId = async(chatId) => {
     const response =
         (await http.apicall(apimethods.GET, `/transaction/chat/${chatId}`)) || {};
-    console.log(response);
+    return response;
+};
+
+const sendMoneyByIdsAndAmount = async(senderId, recieverId, amount) => {
+    const body = {
+        senderId,
+        recieverId,
+        amount,
+    };
+    const response =
+        (await http.apicall(apimethods.POST, "/transaction/sendmoney", body)) || {};
     return response;
 };
 
@@ -24,4 +34,5 @@ export default {
     searchUser,
     getFriendUsers,
     geUtserChatByChatId,
+    sendMoneyByIdsAndAmount,
 };
