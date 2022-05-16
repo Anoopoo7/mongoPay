@@ -52,12 +52,26 @@ const TransactionContainer = ({ userData }) => {
   }, [selectedUser]);
 
   const sendmoney = async (amount, recieverId) => {
+    if ((recieverId == null) | ((amount | 0) <= 0)) {
+      return null;
+    }
     const response = await transactionService.sendMoneyByIdsAndAmount(
       userData?.id,
       recieverId,
       amount | 0
     );
-    getUserMessages();
+    response?.data && getUserMessages();
+  };
+  const sendRequest = async (amount, recieverId) => {
+    if ((recieverId == null) | ((amount | 0) <= 0)) {
+      return null;
+    }
+    const response = await transactionService.SendMoneyReqByIdsAndAmount(
+      userData?.id,
+      recieverId,
+      amount | 0
+    );
+    response?.data && getUserMessages();
   };
 
   return (
@@ -70,6 +84,7 @@ const TransactionContainer = ({ userData }) => {
         userChat={userChat}
         sendmoney={sendmoney}
         getUserMessages={getUserMessages}
+        sendRequest={sendRequest}
       />
     </>
   );

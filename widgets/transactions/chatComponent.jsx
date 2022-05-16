@@ -7,11 +7,17 @@ const ChatComponent = ({
   userChat,
   sendmoney,
   getUserMessages,
+  sendRequest
 }) => {
   const amound = useRef(null);
   const handleSendMoney = () => {
     const amounds = amound.current.value;
     sendmoney(amounds, selectedUser?.id);
+    amound.current.value = "";
+  };
+  const handleSendRequest = () => {
+    const amounds = amound.current.value;
+    sendRequest(amounds, selectedUser?.id);
     amound.current.value = "";
   };
   useEffect(() => {
@@ -78,7 +84,10 @@ const ChatComponent = ({
               >
                 Send Money
               </button>
-              <button className="btn btn-outline-secondary">
+              <button
+                className="btn btn-outline-secondary"
+                onClick={handleSendRequest}
+              >
                 Request Money
               </button>
             </div>
