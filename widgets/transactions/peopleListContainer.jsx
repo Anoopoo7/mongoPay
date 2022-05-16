@@ -20,9 +20,12 @@ const PeopleListContainer = ({
     return exactTime;
   };
   const convertTime = (time) => {
+    if(time == null){
+      return "No Logs"
+    }
     const today = new Date().toISOString();
     const currentExT = getExactTime(today.slice(0, 22));
-    const LastExT = getExactTime(time.slice(0, 22));
+    const LastExT = getExactTime(time?.slice(0, 22));
     if (currentExT.year == LastExT.year) {
       if (currentExT.month == LastExT.month) {
         if (currentExT.date == LastExT.date) {
