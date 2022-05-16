@@ -6,6 +6,7 @@ const ChatContainer = ({
   sendmoney,
   getUserMessages,
   sendRequest,
+  handleRequest,
 }) => {
   return (
     <>
@@ -15,6 +16,7 @@ const ChatContainer = ({
         sendmoney={sendmoney}
         getUserMessages={getUserMessages}
         sendRequest={sendRequest}
+        handleRequest={handleRequest}
       />
     </>
   );

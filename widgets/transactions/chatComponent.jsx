@@ -7,7 +7,8 @@ const ChatComponent = ({
   userChat,
   sendmoney,
   getUserMessages,
-  sendRequest
+  sendRequest,
+  handleRequest,
 }) => {
   const amound = useRef(null);
   const handleSendMoney = () => {
@@ -64,7 +65,9 @@ const ChatComponent = ({
                 ? userChat.map((each, index) => (
                     <>
                       {each.me && <MyChat each={each} />}
-                      {!each.me && <OtherChat each={each} />}
+                      {!each.me && (
+                        <OtherChat each={each} handleRequest={handleRequest} />
+                      )}
                     </>
                   ))
                 : ""}

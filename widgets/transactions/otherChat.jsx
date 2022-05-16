@@ -1,4 +1,4 @@
-const OtherChat = ({ each }) => {
+const OtherChat = ({ each, handleRequest }) => {
   const getExactTime = (times) => {
     const [day, time] = times.split("T") || [];
     const [hrs, mins, sec] = time.split(":") || [];
@@ -28,10 +28,26 @@ const OtherChat = ({ each }) => {
             <br />
             <span className="h1 p-2">{each?.amount}</span>
             <br />
-            <button className="btn btn-sm btn-success m-1">send</button>
-            <button className="btn btn-sm btn-outline-secondary m-1">
-              decline
-            </button>
+            {each.status ? (
+              <button className="btn btn-sm btn-success m-1">Accepted</button>
+            ) : each.status == false ? (
+              <button className="btn btn-sm btn-danger m-1">Rejected</button>
+            ) : (
+              <>
+                <button
+                  className="btn btn-sm btn-success m-1"
+                  onClick={() => handleRequest(each, true)}
+                >
+                  send
+                </button>
+                <button
+                  className="btn btn-sm btn-outline-secondary m-1"
+                  onClick={() => handleRequest(each, false)}
+                >
+                  decline
+                </button>
+              </>
+            )}
           </div>
         ) : (
           <div className="message other-message p-3">

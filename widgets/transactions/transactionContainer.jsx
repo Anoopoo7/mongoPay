@@ -73,6 +73,13 @@ const TransactionContainer = ({ userData }) => {
     );
     response?.data && getUserMessages();
   };
+  const handleRequest = async (each, status) => {
+    each.status = status;
+    const response = await transactionService.handleMoneyReqByIdsAndAmount(
+      each
+    );
+    response?.data && getUserMessages();
+  };
 
   return (
     <>
@@ -85,6 +92,7 @@ const TransactionContainer = ({ userData }) => {
         sendmoney={sendmoney}
         getUserMessages={getUserMessages}
         sendRequest={sendRequest}
+        handleRequest={handleRequest}
       />
     </>
   );

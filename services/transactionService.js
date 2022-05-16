@@ -41,10 +41,18 @@ const SendMoneyReqByIdsAndAmount = async(senderId, recieverId, amount) => {
     return response;
 };
 
+const handleMoneyReqByIdsAndAmount = async(transaction) => {
+    const body = transaction;
+    const response =
+        (await http.apicall(apimethods.POST, "/transaction/updaterequest", body)) || {};
+    return response;
+};
+
 export default {
     searchUser,
     getFriendUsers,
     geUtserChatByChatId,
     sendMoneyByIdsAndAmount,
     SendMoneyReqByIdsAndAmount,
+    handleMoneyReqByIdsAndAmount,
 };

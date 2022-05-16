@@ -29,6 +29,8 @@ const MyChat = ({ each }) => {
             <br />
             {each.status ? (
               <button className="btn btn-sm btn-success m-1">Accepted</button>
+            ) : each.status == false ? (
+              <button className="btn btn-sm btn-danger m-1">Rejected</button>
             ) : (
               <button className="btn btn-sm btn-secondary m-1">Pending</button>
             )}

@@ -10,6 +10,7 @@ const TransactionComponent = ({
   sendmoney,
   getUserMessages,
   sendRequest,
+  handleRequest,
 }) => {
   return (
     <>
@@ -28,6 +29,7 @@ const TransactionComponent = ({
                 sendmoney={sendmoney}
                 getUserMessages={getUserMessages}
                 sendRequest={sendRequest}
+                handleRequest={handleRequest}
               />
             </div>
           </div>
