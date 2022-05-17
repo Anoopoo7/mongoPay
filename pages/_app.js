@@ -1,7 +1,7 @@
 import "../styles/globals.css";
 import "bootstrap/dist/css/bootstrap.css";
 import LayoutComponent from "../layout/LayoutComponent";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import GlobalLoader from "../layout/loader";
 
 function MyApp({ Component, pageProps }) {
